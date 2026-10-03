@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday To You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:#30333a;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(255,255,255,.95),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(190,194,202,.55),transparent 35%),
+        linear-gradient(135deg,#bfc3ca,#f5f5f6,#c9cdd3);
+}
+
+/* BACKGROUND */
+.bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(25px);
+    opacity:.35;
+    animation:floatOrb 9s ease-in-out infinite alternate;
+}
+
+.orb1{
+    width:230px;
+    height:230px;
+    background:#fff;
+    left:-70px;
+    top:15%;
+}
+
+.orb2{
+    width:280px;
+    height:280px;
+    background:#8f949d;
+    right:-100px;
+    bottom:5%;
+    animation-delay:2s;
+}
+
+@keyframes floatOrb{
+    from{transform:translate(0,0)}
+    to{transform:translate(30px,-35px)}
+}
+
+/* PARTICLES */
+.particle{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:rgba(255,255,255,.8);
+    animation:particleMove linear infinite;
+}
+
+@keyframes particleMove{
+    from{
+        transform:translateY(110vh) scale(.5);
+        opacity:0;
+    }
+    20%{opacity:1}
+    80%{opacity:1}
+    to{
+        transform:translateY(-20vh) scale(1.3);
+        opacity:0;
+    }
+}
+
+/* INTRO */
+#intro{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    z-index:2;
+    padding:25px;
+}
+
+.mini{
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#686d76;
+    margin-bottom:8px;
+}
+
+h1{
+    font-family:"Baloo 2",sans-serif;
+    font-size:55px;
+    line-height:.9;
+    color:#292c32;
+    margin-bottom:35px;
+    text-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.envelope-button{
+    border:0;
+    background:none;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.envelope{
+    width:270px;
+    height:180px;
+    position:relative;
+    filter:drop-shadow(0 20px 25px rgba(0,0,0,.22));
+    transition:.5s;
+}
+
+.envelope-button:active .envelope{
+    transform:scale(.95);
+}
+
+.env-back{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(145deg,#e5e7ea,#aeb3bb);
+    border-radius:12px;
+}
+
+.env-inside{
+    position:absolute;
+    width:220px;
+    height:145px;
+    background:#fafafa;
+    left:25px;
+    top:18px;
+    border-radius:6px;
+}
+
+.letter{
+    position:absolute;
+    width:190px;
+    height:130px;
+    background:#fff;
+    left:40px;
+    top:25px;
+    border-radius:5px;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    transition:.8s;
+}
+
+.letter:before{
+    content:"happy birthday";
+    position:absolute;
+    left:0;
+    right:0;
+    top:45px;
+    text-align:center;
+    font-family:"Baloo 2";
+    font-size:18px;
+    color:#777c84;
+}
+
+.env-front{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:105px;
+    background:linear-gradient(145deg,#c7cbd0,#969ba4);
+    clip-path:polygon(0 0,50% 65%,100% 0,100% 100%,0 100%);
+    border-radius:0 0 12px 12px;
+    z-index:3;
+}
+
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:105px;
+    background:linear-gradient(145deg,#dce0e4,#a5aab2);
+    clip-path:polygon(0 0,100% 0,50% 70%);
+    transform-origin:top;
+    transition:.8s;
+    z-index:4;
+}
+
+.ribbon{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:13px;
+    height:180px;
+    background:rgba(255,255,255,.55);
+    z-index:5;
+}
+
+.seal{
+    position:absolute;
+    z-index:6;
+    left:50%;
+    top:87px;
+    transform:translate(-50%,-50%);
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#777c84;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Baloo 2";
+    font-size:19px;
+    box-shadow:0 5px 12px rgba(0,0,0,.2);
+}
+
+.open-text{
+    margin-top:25px;
+    font-size:13px;
+    letter-spacing:2px;
+    color:#686d76;
+    animation:blink 1.7s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.45}
+}
+
+/* OPEN */
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+    transform:translateY(-85px);
+}
+
+.envelope.open{
+    transform:translateY(20px);
+}
+
+/* BALLOONS */
+.balloon{
+    position:fixed;
+    width:45px;
+    height:55px;
+    border-radius:50% 50% 45% 45%;
+    background:linear-gradient(145deg,#f7f7f7,#969ba3);
+    z-index:20;
+    animation:balloonUp 4s ease-out forwards;
+    pointer-events:none;
+}
+
+.balloon:after{
+    content:"";
+    position:absolute;
+    width:1px;
+    height:65px;
+    background:#777;
+    left:50%;
+    top:53px;
+}
+
+@keyframes balloonUp{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh) rotate(25deg);
+        opacity:0;
+    }
+}
+
+/* BIRTHDAY */
+#birthday{
+    display:none;
+    min-height:100vh;
+    position:relative;
+    z-index:2;
+    padding:60px 18px 80px;
+    text-align:center;
+}
+
+.birthday-title{
+    font-family:"Baloo 2";
+    font-size:50px;
+    line-height:1;
+    color:#292c32;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#666b73;
+    font-size:14px;
+    margin-bottom:30px;
+}
+
+/* CARD */
+.card{
+    max-width:850px;
+    margin:auto;
+    background:rgba(255,255,255,.58);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.75);
+    border-radius:30px;
+    padding:30px;
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.8);
+    position:relative;
+    overflow:hidden;
+}
+
+.card:before{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:rgba(255,255,255,.5);
+    border-radius:50%;
+    filter:blur(30px);
+    top:-120px;
+    right:-100px;
+}
+
+/* PHOTOBOOTH */
+.photobooth{
+    position:relative;
+    z-index:2;
+}
+
+.photo-strip{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+}
+
+.photo{
+    width:min(100%,360px);
+    height:220px;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    background:
+        linear-gradient(135deg,#d9dce0,#aeb3bb);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.16);
+    border:7px solid white;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.photo-number{
+    position:absolute;
+    bottom:10px;
+    right:12px;
+    background:rgba(255,255,255,.85);
+    padding:3px 9px;
+    border-radius:20px;
+    font-size:11px;
+    color:#555;
+}
+
+/* MUSIC */
+.music{
+    margin:30px auto 0;
+    max-width:500px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:13px 16px;
+    border-radius:20px;
+    background:rgba(255,255,255,.7);
+    box-shadow:0 12px 25px rgba(0,0,0,.1);
+}
+
+.music-cover{
+    width:55px;
+    height:55px;
+    border-radius:14px;
+    object-fit:cover;
+    box-shadow:0 5px 12px rgba(0,0,0,.15);
+}
+
+.music-info{
+    flex:1;
+    text-align:left;
+}
+
+.music-info strong{
+    display:block;
+    font-size:14px;
+}
+
+.music-info span{
+    font-size:11px;
+    color:#777;
+}
+
+.music-btn{
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:#555b64;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.music-cover.playing{
+    animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+    to{transform:rotate(360deg)}
+}
+
+/* NOTE */
+.note{
+    margin-top:35px;
+    text-align:left;
+}
+
+.note h2{
+    font-family:"Baloo 2";
+    font-size:28px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+textarea{
+    width:100%;
+    min-height:250px;
+    resize:vertical;
+    border:0;
+    outline:0;
+    border-radius:18px;
+    padding:20px;
+    background:rgba(255,255,255,.75);
+    box-shadow:inset 0 2px 10px rgba(0,0,0,.06);
+    font-family:"DM Sans";
+    font-size:14px;
+    color:#444;
+    line-height:1.7;
+}
+
+/* CONFETTI */
+.confetti{
+    position:fixed;
+    width:8px;
+    height:14px;
+    top:-20px;
+    z-index:30;
+    pointer-events:none;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+    h1{
+        font-size:47px;
+    }
+
+    .birthday-title{
+        font-size:43px;
+    }
+
+    .card{
+        padding:20px 14px;
+    }
+
+    .photo{
+        height:200px;
+    }
+
+    .envelope{
+        width:245px;
+        height:165px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+
+    <div class="mini">a little surprise for</div>
+
+    <h1>
+        happy birthday<br>
+        pretty!
+    </h1>
+
+    <button class="envelope-button" id="openEnvelope">
+
+        <div class="envelope">
+
+            <div class="env-back"></div>
+            <div class="env-inside"></div>
+
+            <div class="letter"></div>
+
+            <div class="env-front"></div>
+            <div class="flap"></div>
+
+            <div class="ribbon"></div>
+
+            <div class="seal">C</div>
+
+        </div>
+
+    </button>
+
+    <div class="open-text">
+        tap the envelope
+    </div>
+
+</section>
+
+
+<!-- BIRTHDAY -->
+<section id="birthday">
+
+    <div class="birthday-title">
+        happy birthday, sayang
+    </div>
+
+    <div class="subtitle">
+        a little surprise made especially for you
+    </div>
+
+
+    <div class="card">
+
+        <!-- PHOTOS -->
+        <div class="photobooth">
+
+            <div class="photo-strip">
+
+                <!-- FOTO 1 -->
+                <div class="photo">
+
+                    <img src="foto1.jpg" alt="Foto Ciwaa 1">
+
+                    <span class="photo-number">
+                        01
+                    </span>
+
+                </div>
+
+
+                <!-- FOTO 2 -->
+                <div class="photo">
+
+                    <img src="foto2.jpg" alt="Foto Ciwaa 2">
+
+                    <span class="photo-number">
+                        02
+                    </span>
+
+                </div>
+
+
+                <!-- FOTO 3 -->
+                <div class="photo">
+
+                    <img src="foto3.jpg" alt="Foto Ciwaa 3">
+
+                    <span class="photo-number">
+                        03
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MUSIC -->
+        <div class="music">
+
+            <img
+                class="music-cover"
+                id="musicCover"
+                src="cover.jpg"
+                alt="Cover lagu"
+            >
+
+            <div class="music-info">
+
+                <strong>
+                    best part!
+                </strong>
+
+                <span>
+                    press play
+                </span>
+
+            </div>
+
+            <button
+                class="music-btn"
+                id="musicButton"
+            >
+                ▶
+            </button>
+
+        </div>
+
+        <audio id="music" loop>
+            <source src="lagu1.mp3" type="audio/mpeg">
+        </audio>
+
+
+        <!-- NOTE -->
+        <div class="note">
+
+            <h2>
+                please read this
+            </h2>
+
+            <textarea placeholder="Happy birthday, dear!
+i hope this new chapter brings you so many beautiful moments, little reasons to smile, and everything your heart has been wishing for. you deserve to be surrounded by good people, genuine happiness, and endless love. thank you for being such a lovely person. i hope you keep growing, dreaming, and becoming the best version of yourself. may this year be kinder, brighter, and full of memories worth keeping. happy birthday once again, pretty. i hope you have the sweetest day ever! ♡"></textarea>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* PARTICLES */
+
+const bg = document.querySelector(".bg");
+
+for(let i=0;i<35;i++){
+
+    const p = document.createElement("div");
+
+    p.className = "particle";
+
+    p.style.left = Math.random()*100 + "%";
+    p.style.animationDuration = (5 + Math.random()*8) + "s";
+    p.style.animationDelay = Math.random()*8 + "s";
+    p.style.opacity = Math.random();
+
+    bg.appendChild(p);
+}
+
+
+/* ENVELOPE */
+
+const openEnvelope =
+    document.getElementById("openEnvelope");
+
+const envelope =
+    document.querySelector(".envelope");
+
+const intro =
+    document.getElementById("intro");
+
+const birthday =
+    document.getElementById("birthday");
+
+
+openEnvelope.addEventListener("click",function(){
+
+    envelope.classList.add("open");
+
+    createBalloons();
+    createConfetti();
+
+    setTimeout(function(){
+
+        intro.style.opacity = "0";
+        intro.style.transform = "translateY(-20px)";
+        intro.style.transition = "1s";
+
+    },700);
+
+
+    setTimeout(function(){
+
+        intro.style.display = "none";
+
+        birthday.style.display = "block";
+
+        birthday.style.opacity = "0";
+        birthday.style.transform = "translateY(30px)";
+
+        setTimeout(function(){
+
+            birthday.style.transition = "1s";
+            birthday.style.opacity = "1";
+            birthday.style.transform = "translateY(0)";
+
+        },50);
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    },1300);
+
+});
+
+
+/* BALLOONS */
+
+function createBalloons(){
+
+    for(let i=0;i<12;i++){
+
+        const balloon =
+            document.createElement("div");
+
+        balloon.className = "balloon";
+
+        balloon.style.left =
+            Math.random()*100 + "vw";
+
+        balloon.style.bottom =
+            "-80px";
+
+        balloon.style.animationDuration =
+            (3 + Math.random()*2) + "s";
+
+        balloon.style.animationDelay =
+            Math.random()*.5 + "s";
+
+        document.body.appendChild(balloon);
+
+        setTimeout(()=>{
+            balloon.remove();
+        },5500);
+
+    }
+
+}
+
+
+/* CONFETTI */
+
+function createConfetti(){
+
+    for(let i=0;i<70;i++){
+
+        const c =
+            document.createElement("div");
+
+        c.className = "confetti";
+
+        c.style.left =
+            Math.random()*100 + "vw";
+
+        c.style.animationDuration =
+            (2 + Math.random()*2) + "s";
+
+        c.style.animationDelay =
+            Math.random()*.5 + "s";
+
+        c.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+        const colors=[
+            "#ffffff",
+            "#d7d9dd",
+            "#a7abb2",
+            "#747982"
+        ];
+
+        c.style.background =
+            colors[Math.floor(Math.random()*colors.length)];
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>{
+            c.remove();
+        },5000);
+
+    }
+
+}
+
+
+/* MUSIC */
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const musicCover =
+    document.getElementById("musicCover");
+
+
+musicButton.addEventListener("click",function(){
+
+    if(music.paused){
+
+        music.play().then(()=>{
+
+            musicButton.textContent = "Ⅱ";
+
+            musicCover.classList.add("playing");
+
+        }).catch(()=>{
+
+            alert(
+                "Pastikan file lagu.mp3 ada di folder yang sama dengan index.html"
+            );
+
+        });
+
+    }else{
+
+        music.pause();
+
+        musicButton.textContent = "▶";
+
+        musicCover.classList.remove("playing");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
